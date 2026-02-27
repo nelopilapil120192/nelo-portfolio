@@ -1,74 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nelo | Senior System Architect</title>
+    <title>Nelo Pilapil | Senior System Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-                /* Hamburger Animation to X */
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+        body { background-color: #0f172a; color: #f8fafc; padding-top: 80px; }
+        .glow { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+
+        /* Hamburger Animation */
         .open .bar1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .open .bar2 { opacity: 0; }
         .open .bar3 { transform: rotate(45deg) translate(-5px, -6px); }
 
-        /* Slide in Menu */
-        .menu-active { transform: translateX(0); }
+        /* Prevent scrolling when menu is open */
+        .overflow-hidden { overflow: hidden; }
 
-        /* Spacing fix for fixed nav */
-        body { padding-top: 80px; }
-
-        body { background-color: #0f172a; color: #f8fafc; }
-        .glow { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        /* Bulletproof Mobile Menu */
+        .mobile-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: #0f172a; z-index: 90;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+            transform: translateX(100%); transition: transform 0.3s ease-in-out;
+        }
+        .mobile-overlay.menu-active { transform: translateX(0); }
+        .mobile-link { color: #94a3b8; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .mobile-link:hover { color: #38bdf8; }
     </style>
 </head>
+
 <body class="font-sans leading-relaxed tracking-wide">
 
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-sky-400 font-mono font-bold text-xl">NP| SYSTEM ARCHITECT<span class="text-slate-500">...</span></div>
 
+            <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-semibold">
+                <a href="#about" class="text-slate-400 hover:text-sky-400 transition">About</a>
+                <a href="#projects" class="text-slate-400 hover:text-sky-400 transition">Projects</a>
+                <a href="#skills" class="text-slate-400 hover:text-sky-400 transition">Tech Stack</a>
+                <a href="resume.html" target="_blank" class="text-slate-400 hover:text-sky-400 transition">Resume</a>
+                <a href="mailto:nelopilapil120192@gmail.com" class="border border-sky-400/50 px-4 py-2 rounded-full text-sky-400 hover:bg-sky-400 hover:text-slate-900 transition shadow-[0_0_15px_rgba(56,189,248,0.1)]">Contact</a>
+            </div>
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="text-sky-400 font-mono font-bold tracking-tighter text-xl">
-            NPILAPIL | SYSTEM ARCHITECT<span class="text-slate-500">....</span>
+            <button id="menu-btn" class="block md:hidden focus:outline-none relative z-[100]" aria-label="Menu">
+                <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar1"></div>
+                <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar2"></div>
+                <div class="w-6 h-0.5 bg-sky-400 transition-all duration-300 bar3"></div>
+            </button>
         </div>
 
-        <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-semibold">
-            <a href="#skills" class="text-slate-400 hover:text-sky-400 transition">Tech stack</a>
-            <a href="#projects" class="text-slate-400 hover:text-sky-400 transition">Projects</a>
-            <a href="resume.html" target="_blank" class="text-slate-400 hover:text-sky-400 transition">Resume</a>
-            <a href="mailto:nelopilapil120192@gmail.com" class="bg-sky-500/10 text-sky-400 px-4 py-2 rounded-full border border-sky-500/20 hover:bg-sky-500 hover:text-slate-900 transition">Hire Me</a>
+        <div id="mobile-menu" class="mobile-overlay">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#skills" class="mobile-link">Tech Stack</a>
+            <a href="resume.html" class="mobile-link">Resume</a>
+            <a href="mailto:nelopilapil120192@gmail.com" class="text-sky-400 border border-sky-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest mt-4">Hire Me</a>
         </div>
+    </nav>
 
-        <button id="menu-btn" class="block md:hidden focus:outline-none z-50">
-            <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar1"></div>
-            <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar2"></div>
-            <div class="w-6 h-0.5 bg-sky-400 transition-all duration-300 bar3"></div>
-        </button>
-    </div>
-
-    <div id="mobile-menu" class="fixed inset-0 bg-[#0f172a] translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 text-xl uppercase tracking-widest font-bold">
-        <a href="#about" class="mobile-link text-slate-400 hover:text-sky-400">About</a>
-        <a href="#projects" class="mobile-link text-slate-400 hover:text-sky-400">Projects</a>
-        <a href="resume.html" class="mobile-link text-slate-400 hover:text-sky-400">Resume</a>
-        <a href="mailto:nelopilapil120192@gmail.com" class="text-sky-400 border border-sky-400 px-8 py-3 rounded-full">Contact</a>
-    </div>
-</nav>
-   
-
-    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <header class="py-24 px-6 max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-            Bridging Legacy Systems with <span class="text-sky-400">Modern Cloud Architecture.</span>
+            Bridging Legacy Systems with <span class="text-sky-400 glow">Modern Cloud Architecture.</span>
         </h1>
-        <p class="text-lg md:text-xl text-slate-400 mb-10">
+        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
             Senior System Architect with 11 years of experience. I specialize in <span class="text-slate-200">Legacy Modernization</span> and <span class="text-slate-200">Oracle Enterprise Architecture.</span>
         </p>
+    </header>
 
-      <section   section class="mb-16">
+    <main class="max-w-5xl mx-auto px-6">
+        
+        <section id="about" class="mb-24 scroll-mt-24">
             <h3 class="text-sky-400 text-sm font-mono tracking-widest uppercase mb-6 flex items-center gap-2">
                 <i class="fas fa-user-tie"></i> Executive Summary
             </h3>
-            <div class="bg-slate-800/40 p-8 rounded-2xl border border-slate-700 relative overflow-hidden">
-                <i class="fas fa-quote-left absolute top-4 left-4 text-slate-700 text-4xl opacity-50"></i>
+            <div class="bg-slate-800/40 p-8 rounded-2xl border border-slate-700 relative overflow-hidden hover:border-sky-500/30 transition-all">
+                <i class="fas fa-quote-left absolute top-4 left-4 text-slate-700 text-4xl opacity-30"></i>
                 <div class="relative z-10">
                     <p class="text-lg text-slate-200 leading-relaxed mb-6">
                         With <span class="text-sky-400 font-bold">11 years of deep technical expertise</span>, I specialize in transforming complex legacy infrastructures into high-performance, cloud-native solutions. As a <span class="text-white font-semibold">System Architect</span>, I thrive at the intersection of database integrity and modern web scalability.
@@ -80,168 +91,158 @@
             </div>
         </section>
 
-        <div class="flex justify-center space-x-4">
+        <section id="skills" class="mb-24 scroll-mt-24">
+            <h3 class="text-sky-400 text-sm font-mono tracking-widest uppercase mb-6 flex items-center gap-2">
+                <i class="fas fa-tools"></i> Technical Arsenal
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-sky-500/30 transition-all">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <i class="fas fa-database text-sky-400"></i> Oracle Ecosystem
+                    </h4>
+                    <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
+                        <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">Oracle APEX</span>
+                        <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">Forms & Reports</span>
+                        <span class="px-2 py-1 bg-slate-900 text-yellow-500 rounded border border-slate-600">PL/SQL (Expert)</span>
+                        <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">ORDS</span>
+                    </div>
+                </div>
 
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-sky-500/30 transition-all">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <i class="fas fa-server text-sky-400"></i> Database Management
+                    </h4>
+                    <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
+                        <span class="px-2 py-1 bg-slate-900 text-sky-400 rounded border border-sky-500/50 font-bold">Oracle (10g/12c/19c)</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">MySQL</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">MSSQL</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">AWS RDS</span>
+                    </div>
+                </div>
 
-<section id="skills" class="mt-12">
-    <h3 class="text-sky-400 text-sm font-mono tracking-widest uppercase mb-6 flex items-center gap-2">
-        <i class="fas fa-tools"></i> Technical Arsenal
-    </h3>
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-sky-500/30 transition-all">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <i class="fas fa-server text-sky-400"></i> DevOps & Cloud
+                    </h4>
+                    <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
+                        <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-sky-900">Docker</span>
+                        <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-sky-900">OCI</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">CI/CD</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Git</span>
+                    </div>
+                </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-            <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <i class="fas fa-database text-sky-400"></i> Oracle Ecosystem
-            </h4>
-            <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">Oracle APEX</span>
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">Forms & Reports</span>
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600 text-yellow-500">PL/SQL (Expert)</span>
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-slate-600">ORDS</span>
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-sky-500/30 transition-all">
+                    <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <i class="fas fa-code text-sky-400"></i> Software Dev & Architecture
+                    </h4>
+                    <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Java / C#</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">AngularJS</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">System Flow / DFD</span>
+                        <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Agile (Jira)</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-            <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <i class="fas fa-code text-sky-400"></i> Software Development
-            </h4>
-            <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Java</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">AngularJS</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">VB.NET / C#</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Power BI</span>
-            </div>
-        </div>
+    </main>
 
-        <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-            <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <i class="fas fa-server text-sky-400"></i> DevOps & Cloud
-            </h4>
-            <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-sky-900">Docker</span>
-                <span class="px-2 py-1 bg-slate-900 text-sky-300 rounded border border-sky-900">OCI</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">CI/CD</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">AWS RDS</span>
-            </div>
-        </div>
-
-        <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-            <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <i class="fas fa-project-diagram text-sky-400"></i> Architecture & Analysis
-            </h4>
-            <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Technical Documentation</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">DFD / System Flow</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">Agile (Jira)</span>
-            </div>
-        </div>
-
-        <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-            <h4 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <i class="fas fa-server text-sky-400"></i> Database Management
-            </h4>
-            <div class="flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-wider">
-                <span class="px-2 py-1 bg-slate-900 text-sky-400 rounded border border-sky-500/50 font-bold">
-                    Oracle (10g/12c/19c)
-                </span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">MySQL</span>
-                <span class="px-2 py-1 bg-slate-900 text-slate-300 rounded border border-slate-600">MSSQL</span>
-        </div>
-</div>
-    </div>
-</section>
-        </div>
-    </header>
-
-    <section id="projects" class="py-20 bg-slate-900/50">
+    <section id="projects" class="py-24 bg-slate-900/50 border-t border-b border-slate-800 scroll-mt-20">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 border-b border-slate-800 pb-4">Featured Work</h2>
+            <h2 class="text-3xl font-bold mb-12 border-b border-slate-800 pb-4 flex items-center gap-3">
+                <i class="fas fa-laptop-code text-sky-400"></i> Featured Work
+            </h2>
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
                     <h3 class="text-4xl font-bold text-sky-400 leading-tight">Institutional HR Information System (HURIS)</h3>
-                    <p class="text-slate-400">
+                    <p class="text-slate-400 text-lg">
                         Led the end-to-end modernization of a legacy Oracle 6i environment into a high-performance, containerized Oracle APEX ecosystem.
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li>⚡ <strong class="text-white">Full-Stack Architecture:</strong> One-man team execution from DB design to UI.</li>
-                        <li>🛡️ <strong class="text-white">Security:</strong> Implemented OIDC (Google Auth) and Role-Based Access Control (RBAC).</li>
-                        <li>🚀 <strong class="text-white">Infrastructure:</strong> Local development using Docker & ORDS with seamless cloud-ready deployment.</li>
+                    <ul class="space-y-4 text-sm text-slate-300 mt-6">
+                        <li class="flex items-start gap-3"><span class="text-xl">⚡</span> <div><strong class="text-white block">Full-Stack Architecture:</strong> One-man team execution from DB design to UI integration.</div></li>
+                        <li class="flex items-start gap-3"><span class="text-xl">🛡️</span> <div><strong class="text-white block">Security:</strong> Implemented OIDC (Google Auth) and Role-Based Access Control (RBAC).</div></li>
+                        <li class="flex items-start gap-3"><span class="text-xl">🚀</span> <div><strong class="text-white block">Infrastructure:</strong> Local development using Docker & ORDS with seamless cloud-ready OCI deployment.</div></li>
                     </ul>
                 </div>
 
-                
-<div class="bg-slate-900 aspect-video rounded-xl border border-slate-700 flex flex-col items-center justify-center shadow-2xl p-6 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-    <div class="z-10 flex flex-col items-center gap-6 w-full">
-        <h4 class="text-sky-400 text-xs font-mono tracking-widest uppercase mb-4">HURIS Enterprise Infrastructure</h4>
-        
-        <div class="flex items-center justify-around w-full max-w-lg">
-            <div class="flex flex-col items-center gap-2">
-                <div class="p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-lg">
-                    <i class="fas fa-users text-sky-400 text-xl"></i>
-                </div>
-                <span class="text-[10px] text-slate-400 uppercase">Users</span>
-            </div>
-
-            <i class="fas fa-arrow-right text-slate-600 animate-pulse"></i>
-
-            <div class="flex flex-col items-center gap-2">
-                <div class="p-4 bg-sky-900/30 border border-sky-500 rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.2)]">
-                    <div class="flex flex-col items-center">
-                        <span class="text-sky-400 font-bold text-sm">ORACLE APEX</span>
-                        <span class="text-[9px] text-sky-300/70">Docker Container</span>
+                <div class="bg-slate-900 aspect-video rounded-xl border border-slate-700 flex flex-col items-center justify-center shadow-2xl p-6 relative overflow-hidden group hover:border-sky-500/50 transition-all">
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <div class="z-10 flex flex-col items-center gap-6 w-full">
+                        <h4 class="text-sky-400 text-xs font-mono tracking-widest uppercase mb-4">HURIS Enterprise Infrastructure</h4>
+                        <div class="flex items-center justify-around w-full max-w-lg">
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-lg"><i class="fas fa-users text-sky-400 text-xl"></i></div>
+                                <span class="text-[10px] text-slate-400 uppercase">Users</span>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-600 animate-pulse"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="p-4 bg-sky-900/30 border border-sky-500 rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-sky-400 font-bold text-sm">ORACLE APEX</span>
+                                        <span class="text-[9px] text-sky-300/70">Docker Container</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] text-slate-400 uppercase">App Layer</span>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-600 animate-pulse"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-lg"><i class="fas fa-database text-sky-400 text-xl"></i></div>
+                                <span class="text-[10px] text-slate-400 uppercase">OCI / PL-SQL</span>
+                            </div>
+                        </div>
+                        <div class="mt-2 py-1 px-4 bg-slate-800/50 border border-slate-700 rounded-full">
+                            <span class="text-[10px] text-slate-300 font-mono"><span class="text-green-400">●</span> ORDS REST API Gateway Active</span>
+                        </div>
                     </div>
                 </div>
-                <span class="text-[10px] text-slate-400 uppercase">App Layer</span>
-            </div>
-
-            <i class="fas fa-arrow-right text-slate-600 animate-pulse"></i>
-
-            <div class="flex flex-col items-center gap-2">
-                <div class="p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-lg">
-                    <i class="fas fa-database text-sky-400 text-xl"></i>
-                </div>
-                <span class="text-[10px] text-slate-400 uppercase">OCI / PL-SQL</span>
-            </div>
-        </div>
-
-        <div class="mt-2 py-1 px-4 bg-slate-800/50 border border-slate-700 rounded-full">
-            <span class="text-[10px] text-slate-300 font-mono">
-                <span class="text-green-400">●</span> ORDS REST API Gateway Active
-            </span>
-        </div>
-    </div>
-</div>
-
-
-
-
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="py-20 max-w-6xl mx-auto px-6">
+    <section id="expertise" class="py-24 max-w-5xl mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800">
-                <h4 class="font-bold text-xl mb-4 text-sky-400">Legacy Specialist</h4>
+            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                <i class="fas fa-history text-3xl text-sky-400 mb-4 block"></i>
+                <h4 class="font-bold text-xl mb-4 text-white">Legacy Specialist</h4>
                 <p class="text-sm text-slate-400 leading-relaxed">11 years of deep-diving into complex Oracle environments. I don't just fix bugs; I rebuild foundations for the modern web.</p>
             </div>
-            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800">
-                <h4 class="font-bold text-xl mb-4 text-sky-400">Cloud & DevOps</h4>
-                <p class="text-sm text-slate-400 leading-relaxed">Architecting containerized solutions using Docker to bridge the gap between local development and cloud infrastructure.</p>
+            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                <i class="fab fa-docker text-3xl text-sky-400 mb-4 block"></i>
+                <h4 class="font-bold text-xl mb-4 text-white">Cloud & DevOps</h4>
+                <p class="text-sm text-slate-400 leading-relaxed">Architecting containerized solutions using Docker to bridge the gap between local development and powerful cloud infrastructure.</p>
             </div>
-            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800">
-                <h4 class="font-bold text-xl mb-4 text-sky-400">Security First</h4>
-                <p class="text-sm text-slate-400 leading-relaxed">Prioritizing Data Privacy and Security through Audit Logging, IP Whitelisting, and Enterprise Authentication.</p>
+            <div class="p-8 bg-slate-800/30 rounded-2xl border border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                <i class="fas fa-shield-alt text-3xl text-sky-400 mb-4 block"></i>
+                <h4 class="font-bold text-xl mb-4 text-white">Security First</h4>
+                <p class="text-sm text-slate-400 leading-relaxed">Prioritizing Data Privacy and Security through Audit Logging, IP Whitelisting, and Enterprise Authentication protocols.</p>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-slate-500 text-sm border-t border-slate-900">
+    <footer class="py-8 text-center text-slate-500 text-sm border-t border-slate-900 bg-slate-900/30">
         <p>© 2026 Nelo Pilapil. Built with Passion and SQL.</p>
     </footer>
 
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('open');
+            menu.classList.toggle('menu-active');
+            document.body.classList.toggle('overflow-hidden');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                btn.classList.remove('open');
+                menu.classList.remove('menu-active');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+    </script>
 </body>
 </html>
