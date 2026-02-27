@@ -7,6 +7,17 @@
     <title>Nelo | Senior System Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+                /* Hamburger Animation to X */
+        .open .bar1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .open .bar2 { opacity: 0; }
+        .open .bar3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+        /* Slide in Menu */
+        .menu-active { transform: translateX(0); }
+
+        /* Spacing fix for fixed nav */
+        body { padding-top: 80px; }
+
         body { background-color: #0f172a; color: #f8fafc; }
         .glow { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
     </style>
@@ -14,27 +25,35 @@
 <body class="font-sans leading-relaxed tracking-wide">
 
 
-    <nav class="mt-8">
-    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-[10px] md:text-xs uppercase tracking-[0.2em] text-slate-400 font-semibold">
-        <div class="text-2xl font-bold tracking-tighter glow text-sky-400">NPILAPIL | SYSTEM ARCHITECT</div>
-        <a href="resume.html" target="_blank" class="hover:text-sky-400 transition-all duration-300">
-            <i class="fas fa-file-alt mr-1"></i> Resume
-        </a>
-        
-        <a href="#projects" class="hover:text-sky-400 transition-all duration-300">
-            <i class="fas fa-code-branch mr-1"></i> Projects
-        </a>
-        
-        <a href="#skills" class="hover:text-sky-400 transition-all duration-300">
-            <i class="fas fa-layer-group mr-1"></i> Tech Stack
-        </a>
-        
-        <a href="mailto:nelopilapil120192@gmail.com" 
-           class="border border-sky-400/50 px-3 py-1.5 md:px-5 md:py-2 rounded-full text-sky-400 hover:bg-sky-400 hover:text-slate-900 transition-all duration-300 shadow-[0_0_15px_rgba(56,189,248,0.1)]">
-            Hire Me
-        </a>
+
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-sky-400 font-mono font-bold tracking-tighter text-xl">
+            NPILAPIL | SYSTEM ARCHITECT<span class="text-slate-500">....</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-semibold">
+            <a href="#skills" class="text-slate-400 hover:text-sky-400 transition">Tech stack</a>
+            <a href="#projects" class="text-slate-400 hover:text-sky-400 transition">Projects</a>
+            <a href="resume.html" target="_blank" class="text-slate-400 hover:text-sky-400 transition">Resume</a>
+            <a href="mailto:nelopilapil120192@gmail.com" class="bg-sky-500/10 text-sky-400 px-4 py-2 rounded-full border border-sky-500/20 hover:bg-sky-500 hover:text-slate-900 transition">Hire Me</a>
+        </div>
+
+        <button id="menu-btn" class="block md:hidden focus:outline-none z-50">
+            <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar1"></div>
+            <div class="w-6 h-0.5 bg-sky-400 mb-1.5 transition-all duration-300 bar2"></div>
+            <div class="w-6 h-0.5 bg-sky-400 transition-all duration-300 bar3"></div>
+        </button>
     </div>
-    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0f172a] translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 text-xl uppercase tracking-widest font-bold">
+        <a href="#about" class="mobile-link text-slate-400 hover:text-sky-400">About</a>
+        <a href="#projects" class="mobile-link text-slate-400 hover:text-sky-400">Projects</a>
+        <a href="resume.html" class="mobile-link text-slate-400 hover:text-sky-400">Resume</a>
+        <a href="mailto:nelopilapil120192@gmail.com" class="text-sky-400 border border-sky-400 px-8 py-3 rounded-full">Contact</a>
+    </div>
+</nav>
+   
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
